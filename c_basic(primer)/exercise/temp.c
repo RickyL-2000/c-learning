@@ -1,10 +1,9 @@
 #include <stdio.h>
 int main()
 {
-    char ch = 'B';
+    char s[40];
 
-    int c = ch - 'A';
-    printf("%c\n", ch*3);
+    s = "hello";
 
     return 0;
 }

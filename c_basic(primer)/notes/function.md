@@ -10,6 +10,11 @@
 
 ## 函数的定义
 
+**NOTE**：要求所有形参都有自己的定义，example:
+
+    double function(double a, b);         //无效
+    double function(double a, double b);  //有效
+
 ## 函数的调用
 
 原型(prototype)是函数的声明，描述了函数的返回值和参数
