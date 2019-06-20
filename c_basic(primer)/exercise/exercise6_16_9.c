@@ -7,9 +7,9 @@ int main()
     printf("Enter two nonzero floating-point numbers: ");
     while (check)
     {
-        if (scanf("%f", &a) != 1)
+        if (scanf("%lf", &a) != 1)
             check = 0;
-        else if (scanf("%f%f", &a, &b) != 2 || a == 0 || b == 0)
+        else if (scanf("%lf%lf", &a, &b) != 2 || a == 0 || b == 0)
             printf("Enter two nonzero floating-point numbers: ");
         else {
             if (a >= b)

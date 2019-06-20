@@ -67,11 +67,57 @@
 
 主要就是getchar()和换行符的问题！
 
-## 常用IO函数
+## 常用IO函数及其转换说明
+
 
 ### > printf()
 
-格式化字符(参考data_type.md)
+printf()的格式化字符
+|         type          | Form  |
+| :-------------------: | :---: |
+|        int(10)        |  %d   |
+|        int(10)        |  %i   |
+|       long(10)        |  %ld  |
+|        long(8)        |  %lo  |
+|       long(16)        |  %lx  |
+|     long long(10)     | %lld  |
+|       short(10)       |  %hd  |
+|       short(8)        |  %ho  |
+|       short(16)       |  %hx  |
+|   unsigned int(10)    |  %u   |
+|    unsigned int(8)    |  %o   |
+|     unsigned long     |  %lu  |
+|    unsigned short     |  %hu  |
+|         char          |  %c   |
+|   float/double(10)    |  %f   |
+| float/double(sci(10)) | %e/%E |
+|       %f or %e        |  %g   |
+|       %f or %E        |  %G   |
+|    long double(10)    |  %Lf  |
+| long double(sci(10))  |  %Le  |
+|      _Bool (C99)      |   ?   |
+|      char string      |  %s   |
+|        pointer        |  %p   |
+|           %           |  %%   |
+
+**NOTE**：
+1. d后缀：表示十进制整数
+2. x后缀：表示十六进制整数
+3. o后缀：表示八进制整数
+4. u后缀：表示unsigned
+5. l前缀：表示long
+6. ll前缀：表示long long
+7. h前缀：表示short
+8. 如果用%d格式输出char，则输出ASCII码
+9.  对于float一类的带"e"的科学记数法的十六进制格式，只需要把e和E分别用a和A代替即可
+10. 字符串被储存在char类型的数组中。数组末尾有一个字符\0，代表空字符(null character)。C语言用它来标记字符串的结束。*这意味着数组的容量必须至少比待存储字符串中的字符数多1*
+    example: 
+
+        char name[40];
+11. 用""括起来的是字符串数组，而用''括起来的是字符
+12. 转换说明%p通常以十六进制显示指针的值
+    
+
 
 **printf()的修饰符**
 1. 标记：五种标记(-、+、空格、#、和0)
@@ -111,8 +157,6 @@ output:
         22334     2322    10001
 
 
-
-
 #### 转换说明的意义 (??????)
 
 
@@ -129,7 +173,30 @@ output:
     while (scanf("%f", n) == 1) {...}
 如果系统检测到的是符合scanf()预期的浮点数，那么scanf()就会返回1，否则就不会返回1(0或者EOF)，就不会进行循环体内的操作。scanf()返回的数字代表的是检测到的数据的个数。
 
+scanf()的转换说明
+|     转换说明     |       含义        |
+| :--------------: | :---------------: |
+|        %c        |       char        |
+|      %d,%i       |  signed int (10)  |
+| %e,%f,%g,%a(C99) |       float       |
+|        %o        |  signed int (8)   |
+|        %x        |  signed int (16)  |
+|        %p        |      pointer      |
+|        %s        |      string       |
+|        %u        | unsigned int (10) |
 
+scanf()转换说明中的修饰符
+|  转换说明   |                               含义                               |
+| :---------: | :--------------------------------------------------------------: |
+|     \*      |                       抑制赋值 e.g. "%*d"                        |
+|    数字     |                           最大字段宽度                           |
+|     hh      |     把整数作为signed char或unsigned char类型读取 e.g. "%hhd"     |
+|     ll      | 把整数作为long long或unsigned long long类型读取(C99) e.g. "%lld" |
+|   %hd,%hi   |                            short int                             |
+| %ho,%hx,%hu |                        unsigned short int                        |
+| %lo,%lx,%lu |                          unsigned long                           |
+| %le,%lf,%lg |                              double                              |
+| %Le,%Lf,%Lg |                           long double                            |
 
 
 ### > getchar() 和 putchar()

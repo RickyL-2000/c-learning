@@ -4,7 +4,7 @@ int main(void)
 {
     printf("Enter a number (double): \n");
     double n;
-    scanf("%f", &n);
+    scanf("%lf", &n);
 
     cubic(n);
 
@@ -13,5 +13,5 @@ int main(void)
 
 void cubic(double n)
 {   
-    printf("%f", n);
+    printf("%f", n*n*n);
 }

@@ -35,7 +35,10 @@ ctype.h头文件中的字符映射函数
 | toupper() | lower --> upper |
 
 
-**NOTE**：isblank()和isspace()有什么区别？？？
+**NOTE**：
+1. isblank()和isspace()有什么区别？？？
+2. tolower()和toupper()是函数，有返回值，而且需要把返回值重新赋给一个变量才有作用。换句话说，char是mutable的类型。
+
 
 ### stdbool.h
 
