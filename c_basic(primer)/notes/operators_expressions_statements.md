@@ -173,6 +173,7 @@ example: wordcnt.c
 |      &&      |           and            |
 |     ｜｜     |            or            |
 |      !       |           not            |
+|      ^       |           xor            |
 |      ?       |   contidtion operator    |
 
 
