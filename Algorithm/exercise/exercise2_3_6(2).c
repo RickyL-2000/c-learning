@@ -2,7 +2,7 @@
 
 int biSearch(int array[], int left, int right, int target)
 {
-    if (right <= left) //这算法可以啊！！！这就省去了很多繁杂的边界条件！只要考虑right 和 left 的大小关系就可以了！
+    if (right <= left) //这算法可以啊！！！这就省去了很多繁杂的边界条件！只要考虑right 和 left 的大小关系就可以了！在这种情况下，子数组里就只有一个数据了！
         return (target > array[left]) ? (left+1) : left;
     int mid = (left + right) / 2;
     if (target == array[mid]) {

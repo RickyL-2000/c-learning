@@ -30,12 +30,12 @@ void merge(int array[], int left, int mid, int right, int temp[])
     while (j <= right)
         temp[k++] = array[j++];
     for (i = 0; i < k; i++)   //k在不同的递归层是不一样的，这就避免了在底层的时候访问>k时错误的数据
-        array[left+i] = temp[i]; //把temp中的数据拷贝到原数组对应位置
+        array[left+i] = temp[i]; //把temp中的数据拷贝到原数组对应位置 这里的left容易忘记！！！
 }
 
 void mergeSort(int array[], int left, int right, int temp[]) //标记开始和结束位置。此位置在递归过程中会移动和复制
 {
-    if (left < right) {  //如果p >= r，只有一个可能，就是每个牌堆只有一张牌了，递归则开始“回升”
+    if (left < right) {  //如果left >= right，只有一个可能，就是每个牌堆只有一张牌了，递归则开始“回升”
         int mid = (left+right)/2;
         mergeSort(array, left, mid, temp);
         mergeSort(array, mid+1, right, temp);
