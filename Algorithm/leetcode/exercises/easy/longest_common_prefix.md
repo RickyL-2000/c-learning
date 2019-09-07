@@ -1,0 +1,38 @@
+# 最长字符串前缀
+
+## my solution 1    19/8/13
+
+time: 12 ms
+
+memory: 8.9 mb
+
+    string longestCommonPrefix(vector<string>& strs) {
+        if (strs.begin() == strs.end()) {
+            return "";
+        } else if (strs.end() - strs.begin() == 1) {
+            return strs[0];
+        }
+        string ans = strs[0];
+        size_t len;
+        if (ans.length() > strs[1].length()) {   // 把len缩减为前后对比的两个string的最小len值 （这里指的是strs[1]和strs[2]
+            len = strs[1].length();
+        } else {
+            len = ans.length();
+        }
+        size_t j;
+        for (size_t i = 1; i < strs.size(); ++i) {
+            j = 0;
+            if (len > strs[i].length()) {                   // i 用来遍历所有strs中的元素
+                len = strs[i].length();                     // 把len缩减为前后对比的两个string的最小len值
+            }
+            while (j < len) {
+                if (ans[j] != strs[i][j]) {
+                    len = j;
+                    break;
+                }
+                ++j;
+            }
+        }
+        ans.erase(ans.begin() + j, ans.end());
+        return ans;
+    }
