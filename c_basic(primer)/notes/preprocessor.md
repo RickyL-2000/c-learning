@@ -8,6 +8,18 @@
 
 ### math.h
 
+https://www.runoob.com/cprogramming/c-standard-library-math-h.html
+
+math.h 头文件定义了各种数学函数和一个宏。在这个库中所有可用的功能都带有一个 double 类型的参数，且都返回 double 类型的结果。
+
+下面是这个库中定义的唯一的一个宏：
+
+HUGE_VAL
+
+当函数的结果不可以表示为浮点数时。如果是因为结果的幅度太大以致于无法表示，则函数会设置 errno 为 ERANGE 来表示范围错误，并返回一个由宏 HUGE_VAL 或者它的否定（- HUGE_VAL）命名的一个特定的很大的值。
+
+如果结果的幅度太小，则会返回零值。在这种情况下，error 可能会被设置为 ERANGE，也有可能不会被设置为 ERANGE。
+
 ### ctype.h
 
 ctype.h头文件中的字符测试函数
