@@ -8,7 +8,8 @@
 
 * 方法1：顺序表直接存储
 * 方法2：顺序存储**结构**表示非零项
-  esample:
+
+  example:
 
         struct Polynomial {
             int coef;
@@ -19,7 +20,7 @@
   链表中每个节点存储多项式中的一个非零项，包括系数和指数两个数据域以及一个指针域： (coef)(expon)(link)
   example:
 
-        typedef struct PolyNode *Polynomial; /* Polynomial 是一个指针类型，指向 struct PolyNode (及链表结点) */
+        typedef struct PolyNode *Polynomial; /* Polynomial 是一个指针类型，指向 struct PolyNode (即链表结点) */
         struct PolyNode {
             int coef;
             int expon;
@@ -48,7 +49,7 @@
         List MakeEmpty () {
             List PtrL;
             PtrL = (List) malloc (sizeof(struct LNode));  /* 先去申请这样一个结构 */
-            PtrL->Last = -1;  /* 代表最后一个元素，因为表里没用元素 */
+            PtrL->Last = -1;  /* 代表最后一个元素，因为表里没有元素 */
             return PtrL;
         }
 
@@ -93,7 +94,7 @@
         ElementType Data;
         List Next;
     };
-    struct Lnode L;
+    struct LNode L;
     List PtrL;
 
 #### 主要操作的实现

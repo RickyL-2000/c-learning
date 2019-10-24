@@ -1,19 +1,30 @@
 #include <stdio.h>
-void interchange(int * u, int * v);
 
-int main(void)
+int main() 
 {
-    int x = 5, y = 10;
-    printf("Originally x = %d and y = %d.\n", x, y);
-    interchange(&x, &y);                               //把地址发送给函数
-    printf("Now x = %d and y = %d.\n", x, y);
-    return 0;
+     int x, y, z;
+
+     scanf("%d %d", &x, &y);
+
+     z = foo1(&x, &y); /* z = x*y; */
+
+     printf("z = %d\n", z);
+ 
+     return 0; /* implement this with HALT */
 }
-
-void interchange(int * u, int * v)
+ 
+int foo1(int *x, int *y) 
 {
-    int temp;
-    temp = *u;      //temp获得u所指向对象的值
-    *u = *v;
-    *v = temp;
+    int total=0;
+
+    for (; *x > 0; *x = *x - 1) {
+        total = foo2(total, *y);
+    }
+
+    return total;
+}
+ 
+int foo2(int currentTotal, int y) 
+{
+    return currentTotal + y;
 }

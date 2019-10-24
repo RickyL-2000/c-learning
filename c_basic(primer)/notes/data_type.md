@@ -155,7 +155,7 @@ example:
 
 example 1:
 
-    int main(void)
+    int main
     {
         int x = 5, y = 10;
         printf("Originally x = %d and y = %d.\n", x, y);
@@ -171,7 +171,7 @@ example 1:
         u = v;
         v = temp;
     }
-然而这个程序并不会按照你的意图来运行！main函数中的两个值并不会交换！
+*然而这个程序并不会按照你的意图来运行！main函数中的两个值并不会交换！*
 
 实际上，interchange()函数没有问题，它交换了u和v的值。但是在把结果传回main()时，交换u和v的值对x和y的值没有影响。
 
@@ -458,12 +458,25 @@ example:
 3. 对函数的形参使用const不仅能保护数据，还能让函数处理const数组
 4. 不应该把const数组名作为实参传递给要修改数组数据的函数。C标准规定，使用非const标识符修改const数据导致的结果是未定义的
 5. const还能声明并初始化一个不能指向别处的指针，关键是const的位置：
-
-        double rate[5] = {...};
-        double * const pt = rate; //指针只能指向该数组的开始
+```
+    double rate[5] = {...};
+    double * const pt = rate; //指针只能指向该数组的开始
+```
 6. 或者使用const两次，该指针既不能更改它所指向的地址，也不能修改指向地址上的值：
 
         const double * const pt = rate; //如此就不能修改数组的值了
+
+> example:
+``` 
+int f1() {
+    int const x = 1;
+
+}
+int f2 (int const* ptr ) {
+
+}
+```
+
 
 
 ### 指针和多维数组
@@ -581,7 +594,7 @@ example:
 
 字符串常量属于静态存储类别(static storage class)，这说明如果在函数中使用字符串常量，该字符串只会被储存一次，在整个程序的生命期内存在，即使函数被调用多次。
 
-**用双引号括起来的内容被视为指向该字符串储存位置的指针。**这类似于把数组名作为指向该数组位置的指针。example:
+**用双引号括起来的内容被视为指向该字符串储存位置的指针**。这类似于把数组名作为指向该数组位置的指针。example:
 
     printf("%s, %p, %c\n", "We", "are", *"space farers");
 
