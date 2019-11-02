@@ -42,7 +42,7 @@ int BinarySearch (List Tbl, ElementType K) {
              -> 2
        -> 1
 ```
-![二分查找判定树](C:\Users\RickyLi\Documents\GitHub\cpp-learning\Algorithm\basic_algorithms\data_structures_2019_summer_mooc\notes\binary_search_decision_tree.png)
+![](C:\Users\RickyLi\Documents\GitHub\c-learning\Algorithm\data_structures_2019_summer_mooc\notes\binary_search_decision_tree.PNG)
 
 
 ## 树的定义和术语
@@ -83,7 +83,7 @@ struct TreeNode {
 struct TreeNode *Tree;
 ```
 
-![树与二叉树](C:\Users\RickyLi\Documents\GitHub\cpp-learning\Algorithm\basic_algorithms\data_structures_2019_summer_mooc\notes\tree&binary_tree.PNG)
+![](C:\Users\RickyLi\Documents\GitHub\c-learning\Algorithm\data_structures_2019_summer_mooc\notes\tree&binary_tree.PNG)
 
 所有树都可以被表示为二叉树
 
@@ -267,7 +267,7 @@ void PostOrderTraversal(BinTree BT) {
 
 核心思想：遍历从根节点开始，首先将根节点入队。然后开始执行循环：结点出队、访问该节点、其左右儿子入队
 
-```
+```c
 void LevelOrderTraversal(BinTree BT) {
     Queue Q;
     BinTree T;

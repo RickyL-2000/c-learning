@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/RickyLi/Documents/GitHub/c-learning/trytrywater/tutorial/tutorial.c
+stdio.h
+-
+stdlib.h
+-
+math.h
+-
+

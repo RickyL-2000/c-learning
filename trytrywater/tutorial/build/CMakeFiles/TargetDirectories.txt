@@ -1,0 +1,3 @@
+C:/Users/RickyLi/Documents/GitHub/c-learning/trytrywater/tutorial/build/CMakeFiles/Tutorial.dir
+C:/Users/RickyLi/Documents/GitHub/c-learning/trytrywater/tutorial/build/CMakeFiles/edit_cache.dir
+C:/Users/RickyLi/Documents/GitHub/c-learning/trytrywater/tutorial/build/CMakeFiles/rebuild_cache.dir

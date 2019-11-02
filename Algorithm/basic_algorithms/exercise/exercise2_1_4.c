@@ -24,15 +24,13 @@ int main()
     return 0;
 }
 
-void readArray(int array[], int length)
-{
+void readArray(int array[], int length) {
     for (int i = 0; i < length; i++) {
         scanf("%1d", &array[i]);
     }
 }
 
-void sumArray(int array1[], int array2[], int sum[], int length)
-{
+void sumArray(int array1[], int array2[], int sum[], int length) {
     int carry = 0;  //进位
     for (int i = length - 1; i >= 0; i--) {
         printf("Now the carry is %d.\n", carry);          //debug

@@ -1,0 +1,2 @@
+C:\MinGW\mingw64\x86_64-w64-mingw32\bin\ar.exe qc libQuickStart.a  CMakeFiles/QuickStart.dir/QuickStart.cpp.obj
+C:\MinGW\mingw64\x86_64-w64-mingw32\bin\ranlib.exe libQuickStart.a

@@ -1,0 +1,7 @@
+[
+{
+  "directory": "C:/Users/RickyLi/Documents/GitHub/c-learning/trytrywater/tutorial/build",
+  "command": "C:\\MinGW\\mingw64\\bin\\x86_64-w64-mingw32-gcc.exe  @CMakeFiles/Tutorial.dir/includes_C.rsp -g   -o CMakeFiles\\Tutorial.dir\\tutorial.c.obj   -c C:\\Users\\RickyLi\\Documents\\GitHub\\c-learning\\trytrywater\\tutorial\\tutorial.c",
+  "file": "C:/Users/RickyLi/Documents/GitHub/c-learning/trytrywater/tutorial/tutorial.c"
+}
+]
