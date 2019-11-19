@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.asm": "plaintext",
+        "windows.h": "c"
+    }
+}

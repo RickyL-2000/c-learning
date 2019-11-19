@@ -67,14 +67,36 @@
 
 主要就是getchar()和换行符的问题！
 
-
 ## 文件输入与输出
+
+### 流
+
+一共有三种默认流：
+
+* stdin	(descriptor 0)	keyboard
+* stdout  (descriptor 1)    display (normal)
+* stderr   (descriptor 2)    display (error)
+
+程序员可以自己创造新的流变量，
+
+example:
+
+``` FILE* my_file;```
+
+**NOTE**: Descriptors可以被重载，比如把stdout输出到一个file，再用stderr把错误显示在屏幕上。
 
 ### 打开文件
 
 https://www.runoob.com/cprogramming/c-file-io.html
 
-您可以使用 fopen( ) 函数来创建一个新的文件或者打开一个已有的文件，这个调用会初始化类型 FILE 的一个对象，类型 FILE 包含了所有用来控制流的必要的信息。下面是这个函数调用的原型：
+用fopen()打开Disk上的一个文件，as a Stream
+
+您可以使用 fopen( ) 函数来创建一个新的文件或者打开一个已有的文件，这个调用会初始化类型 FILE 的一个对象，类型 FILE 包含了所有用来控制流的必要的信息。
+
+如果打开成功，该函数会返回一个新的流；如果失败，该函数会返回NULL
+
+下面是这个函数调用的原型：
+
 ```
 FILE *fopen( const char * filename, const char * mode );
 ```
@@ -89,7 +111,7 @@ FILE *fopen( const char * filename, const char * mode );
 |  w+   |                        打开一个文本文件，允许读写文件。如果文件已存在，则文件会被截断为零长度，如果文件不存在，则会创建一个新文件。                        |
 |  a+   |                     打开一个文本文件，允许读写文件。如果文件不存在，则会创建一个新文件。读取会从文件的开头开始，写入则只能是追加模式。                     |
 
-**NOTE**:如果处理的是二进制文件，则需要在每个模式字符串的后面（“+”号前）加一个"B"
+**NOTE**:如果处理的是二进制文件，则需要在每个模式字符串的后面（“+”号前）加一个"b"
 
 ### 关闭文件
 
@@ -166,6 +188,18 @@ int main()
 }
 ```
 
+**NOTICE**: 为了避免读到空文件，应该使用**入口条件循环**进行文件输入。
+
+example:
+```
+int ch;
+FILE *fp;
+fp = fopen("mmp.txt", "r");
+while ((ch = getc(fp)) != EOF) {
+    putchar(ch);
+}
+```
+
 ### 二进制I/O函数
 
 ```
@@ -182,8 +216,136 @@ size_t fwrite(const void *ptr, size_t size_of_elements,
 
 ## 常用IO函数及其转换说明
 
+目录：
+1. 一次一个字符
+2. 读写strings
+3. 格式化IO
+4. 二进制IO
+5. string的格式化IO
 
-### > printf()
+### 一次一个字符
+
+#### fgetc(), getc()
+
+syntax:
+```
+int fgetc(FILE* stream);
+int getc(FILE* stream);
+```
+
+example:
+```
+int fgetc(stdin);
+```
+
+**NOTE**: fgetc() 是一个库函数，getc()是一个预处理器宏。库函数需要时间，但是不占空间。预处理器宏是个inline function，每次调用都会把函数拷贝到当前位置，所以虽然很快，但是会占空间。
+
+这两个函数都返回 1 Byte 或者 EOF
+
+**NOTE**: fgetc()读取'\n'
+
+#### fputc(), putc()
+
+syntax:
+```
+int fputc(int c, FILE* stream);
+int putc(int c, FILE* stream);
+```
+
+#### getchar(), putchar()
+
+**可以使用getchar()和putchar()作为以上函数的缩写**
+
+```
+int getchar (void);
+int putchar(int c);
+```
+
+这两个函数通常定义在stdio.h头文件中。而且，它们也是预处理宏，而不是真正的函数。
+
+**NOTE**： getchar()可以获取空白字符！（包括\n！）
+
+它们比更通用的scanf()和printf()更快、更简洁。而且不需要转换说明。
+
+##### **example: 只读每行的首字符**
+
+这种丢弃一行中其他字符的行为，经常出现在响应单字符的叫虎程序中。
+example:
+
+    while ((ch = getchar()) != '#')
+    {
+        ...                         //对第一个字符的操作
+        while (getchar() != '\n')   //忽略除了第一个字符外的本行的所有字符
+            continue;
+    }
+
+
+
+### 读写 strings: fgets()
+
+#### fgets()
+
+syntax:
+```
+char* fgets(char* s, int size, FILE* stream);
+```
+
+returns NULL on failure
+
+**NOTE**: fgets() will stop reading at the first case of the following three:
+1. end of the input (such as a file)
+2. end of a line (ASCII 0x0A or 0x0D)
+3. end of array s(leaving room for a NUL)
+   
+**fgets()** is the best way to process line-oriented inputs
+
+**NOTE**：可以用fgets()和string IO来处理可读的文件。只需要先用fgets()把各行读入string，然后再用string IO来处理string。相比之下fscanf()很容易出错！(FIXME)
+
+#### fputs()
+
+syntax:
+```
+int fputs(const char* s, FILE *stream);
+```
+returns non-negative number or EOF on failure
+
+#### puts()
+
+puts() is a shortcut for fputs(stdout)
+
+还有一点和fputs(stdout)不一样的是，puts()会在行结尾加入一个换行符(linefeed, ASCII 0x0A on Unix)
+
+#### never use shortcut for reading a string from stdin
+
+**It is a security hazard!**
+
+gets从标准输入设备读字符串函数，其可以无限读取，不会判断上限，以回车结束读取，所以程序员应该确保buffer的空间足够大，以便在执行读操作时不发生溢出。
+
+而因为本函数可以无限读取，易发生溢出。如果溢出，多出来的字符将被写入到堆栈中，这就覆盖了堆栈原先的内容，破坏一个或多个不相关变量的值。
+
+### 格式化IO
+
+#### fscanf()
+
+syntax:
+```
+int fscanf(FILE* stream, const char* format, ...);
+```
+
+* format is the format specifier
+
+#### fprintf()
+
+syntax:
+```
+int fprintf(FILE* stream, const char* format, ...);
+```
+
+**NOTE**: scanf() and printf() are the shortcut of these two functions.
+
+
+
+#### printf()
 
 printf()的格式化字符
 |         type          | Form  |
@@ -250,7 +412,7 @@ printf()的格式化字符
 11. z前缀：size_t (C99) (????)
 
 > example:
-    
+
     exercise4_8_2.c  (不过这最后一小题怎么做??????)
 
 **修饰符中的标记**
@@ -271,10 +433,11 @@ output:
         22334     2322    10001
 
 
-#### 转换说明的意义 (??????)
+##### 转换说明的意义 (??????)
 
 
-### > scanf()
+
+#### scanf()
 
 简单的规则：
 1. 如果用scanf()读取基本变量类型的值，在变量名前加上一个&
@@ -284,6 +447,7 @@ output:
 1. scanf()的一大用处就是检测数据流。example:
 
         while (scanf("%f", n) == 1) {...}
+    
     如果系统检测到的是符合scanf()预期的浮点数，那么scanf()就会返回1，否则就不会返回1(0或者EOF)，就不会进行循环体内的操作。scanf()返回的数字代表的是检测到的数据的个数。
 2. scanf()在遇到第一个空白(空格、制表符或者换行符)时就不再读取输入了，因此，scanf()只会读取字符串中的第一个单词，而不是一整句。
 3. 逐个读取数字的方法：
@@ -320,47 +484,56 @@ scanf()转换说明中的修饰符
 | %Le,%Lf,%Lg |                           long double                            |
 
 
-### > getchar() 和 putchar()
-
-这两个函数通常定义在stdio.h头文件中。**而且，它们通常是预处理宏，而不是真正的函数。**
-
-getchar()函数不带任何参数，它从输入队列中返回下一个字符。
-
-example:
-
-    ch = getchar(); //读取下一个字符输入，并把该字符的值赋给变量ch
-该语句与下面的语句效果相同：
-
-    scanf("%c", &ch);
-
-**NOTE**： getchar()可以获取空白字符！（包括\n！）
-
-putchar()只此函数打印它的参数。
-
-example:
-
-    putchar(ch);
-
-由于这些函数只处理字符，所以它们比更通用的scanf()和printf()更快、更简洁。而且不需要转换说明。
 
 
-#### **只读每行的首字符**
-
-这种丢弃一行中其他字符的行为，经常出现在响应单字符的叫虎程序中。
-example:
-
-    while ((ch = getchar()) != '#')
-    {
-        ...                         //对第一个字符的操作
-        while (getchar() != '\n')   //忽略除了第一个字符外的本行的所有字符
-            continue;
-    }
 
 
-### > puts()
+### 二进制IO
 
-属于stdio.h系列的I/O。只显示字符串，而且自动在字符串末尾加上换行符
+#### fread()
 
-### > gets()
+syntax:
+```
+size_t fread (void* ptr, size_t size, size_t n_elt, FILE* stream);
+```
 
-读取整行输入，直到遇到换行符，然后丢弃换行符，储存其余字符，并在这些字符的末尾添加一个空字符使其成为一个C字符串。
+* ptr is address to which data are stored
+* size is the size of one "thing"
+* n_elt is the number of "things"
+* returns number of "things" read or 0 on failure
+
+#### fwrite()
+
+syntax:
+```
+size_t fwrite (const void* ptr, size_t size, size_t nelt, FILE* stream);
+```
+
+* ptr is address from which data are written
+* others are the same as fread()
+
+
+### string 的格式化IO
+
+#### sscanf()
+
+use sscanf() to read formatted input from a string
+
+syntax:
+```
+int sscanf(const char*s, const char* format, ...);
+```
+
+* s is the string from which to read
+
+#### snprintf()
+
+use snprintf() to write formatted output to a string
+
+syntax：
+```
+int snprintf(char* s, size_t size, const char* format, ...);
+```
+
+* s is the array to which to write
+* size is the length of array

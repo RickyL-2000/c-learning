@@ -13,7 +13,8 @@
             "stdlib.h": "c",
             "stdio.h": "c",
             "windows.h": "c",
-            "iostream": "c"
+            "iostream": "c",
+            "transform.h": "c"
         },
         "C_Cpp.default.cStandard": "c11",
         "C_Cpp.default.intelliSenseMode": "msvc-x64",
