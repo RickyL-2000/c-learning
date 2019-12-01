@@ -194,7 +194,7 @@ void PostOderTraversal(BinTree BT) {
 * 先序遍历
 
 ```
-void InORderTraversal(BinTree BT) {
+void PreORderTraversal(BinTree BT) {
     BinTree T = BT;
     Stack S = CreatStack(MaxSize);
     while (T || !IsEmpty(S)) {

@@ -301,6 +301,7 @@ returns NULL on failure
 
 **NOTE**：可以用fgets()和string IO来处理可读的文件。只需要先用fgets()把各行读入string，然后再用string IO来处理string。相比之下fscanf()很容易出错！(FIXME)
 
+
 #### fputs()
 
 syntax:

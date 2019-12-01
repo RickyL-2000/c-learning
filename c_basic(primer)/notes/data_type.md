@@ -601,6 +601,23 @@ example:
 
 字符串常量属于静态存储类别(static storage class)，这说明如果在函数中使用字符串常量，该字符串只会被储存一次，在整个程序的生命期内存在，即使函数被调用多次。
 
+#### 动态定义字符串
+
+**NOTE**: 字符串也可以被动态申请！但是字符串内容的assignment极容易出错!
+
+example:
+```
+char *s = (char*) malloc (10*sizeof(char));
+s = "Hello";
+```
+以上代码是错误的！因为s一开始作为指向新申请的10个char大小内存位置的array的指针，后来又变成了指向"Hello"的指针，导致原来的10个内存位置的**内存泄露**！（没有成功free)
+以下代码才是正确的申请动态字符串！
+```
+char *s = (char*) malloc (10*sizeof(char));
+strcpy(s, "Hello"); /* 或者写一个循环等初始化数组 */
+```
+
+
 **用双引号括起来的内容被视为指向该字符串储存位置的指针**。这类似于把数组名作为指向该数组位置的指针。example:
 
     printf("%s, %p, %c\n", "We", "are", *"space farers");
