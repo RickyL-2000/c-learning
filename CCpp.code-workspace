@@ -17,7 +17,9 @@
             "transform.h": "c"
         },
         "C_Cpp.default.cStandard": "c11",
-        "C_Cpp.default.intelliSenseMode": "msvc-x64",
-        "C_Cpp.default.cppStandard": "c++17"
+        "C_Cpp.default.intelliSenseMode": "clang-x86",
+        "C_Cpp.default.cppStandard": "c++17",
+        "editor.tabCompletion": "on",
+        "C_Cpp.intelliSenseEngineFallback": "Enabled"
     }
 }

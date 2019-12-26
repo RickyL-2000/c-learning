@@ -2,7 +2,7 @@
     "configurations": [
         {
             "name": "Win32",
-            "compilerPath": "",
+            "compilerPath": "/usr/bin/gcc",
             "includePath": [
                 "${workspaceFolder}\\**",
                 "C:\\MinGW\\mingw64\\x86_64-w64-mingw32\\include",
@@ -28,7 +28,6 @@
             "windowsSdkVersion": "10.0.18362.0",
             "cppStandard": "c++17",
             "configurationProvider": "vector-of-bool.cmake-tools",
-            "compileCommands": "C:/USERS/RICKYLI/DOCUMENTS/GITHUB/C-LEARNING/BUILD/COMPILE_COMMANDS.JSON"
         }
     ],
     "version": 4
