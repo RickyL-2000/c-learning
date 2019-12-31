@@ -10,14 +10,18 @@
     "settings": {
         "files.associations": {
             "*.asm": "plaintext",
+            "*.cpp": "cpp",
             "stdlib.h": "c",
             "stdio.h": "c",
             "windows.h": "c",
             "iostream": "c",
-            "transform.h": "c"
+            "transform.h": "c",
+            "string": "c",
+            "string.h": "c",
+            "cstdio": "c"
         },
         "C_Cpp.default.cStandard": "c11",
-        "C_Cpp.default.intelliSenseMode": "clang-x86",
+        "C_Cpp.default.intelliSenseMode": "msvc-x64",
         "C_Cpp.default.cppStandard": "c++17",
         "editor.tabCompletion": "on",
         "C_Cpp.intelliSenseEngineFallback": "Enabled"

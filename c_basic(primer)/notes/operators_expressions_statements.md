@@ -182,6 +182,7 @@ example: wordcnt.c
 
 **NOTE**：
 1. 整数除法结果的小数部分会被丢弃，这一过程被称为截断(truncation)
+   example: (100 / 8) * 8 = 96
 2. C有一个**typedef机制**：
    
    example:
@@ -213,7 +214,7 @@ example: wordcnt.c
 6. 比较浮点数时，尽量只使用<和>，因为浮点数的舍入误差会导致在逻辑上应该相等的两数却不相等
 7. 一般而言，所有的非零值都视为真，只有0被视为假
 8. <<=，>>=的优先级比==, !=高
-9. 条件运算符"?"，是表达if else语句的一种便捷方式。example:
+9.  条件运算符"?"，是表达if else语句的一种便捷方式。example:
 
         x = (y < 0) ? -y : y;
         max = (a > b) ? a : b;
@@ -228,6 +229,29 @@ example: wordcnt.c
         test ? expression1 : expression2;
         //这个expression也可以被看成一个函数，其“返回值”可以被用在比如printf()函数中，其第二个和第三个运算对象可以是字符串。
     > example: paint.c 
+
+### 位运算符
+
+| bitwise operators |  meanings   |
+| :---------------: | :---------: |
+|         &         |     AND     |
+|        \|         |     OR      |
+|         ~         |     NOT     |
+|        XOR        |      ^      |
+|        <<         | left shift  |
+|        >>         | right shift |
+
+**NOTE**
+1. Left Shift by N Multiplies by 2N
+2. Right Shifts Depend on the Data Type
+   1.  For	an	int
+        – 2’s	complement	representation
+        – produces	arithmetic	right	shift	
+        – (copies	the	sign	bit)
+   2. For	an	unsigned int
+        – unsigned representation
+        – produces	logical	right	shift	
+        – (inserts	0s	on	left)
 
 
 ### 副作用和序列点 (???)

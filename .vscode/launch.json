@@ -45,7 +45,7 @@
                 }
             ],
             "preLaunchTask": "gcc.exe build active file"
-        }
+        },
         {
             "name": "g++.exe build and debug active file in c-learning",
             "type": "cppdbg",
