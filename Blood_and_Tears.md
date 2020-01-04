@@ -16,3 +16,7 @@ char word[10] = "hello"
 word[0] = 'H';
 ```
 then word[] will become "Hello"
+
+## 关于 sizeof
+
+The reason is that an array will decay to a pointer when passed in the function. To get the real size of an array, you need to call sizeof() before calling the function and pass the size to the function.

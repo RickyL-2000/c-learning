@@ -289,15 +289,19 @@ syntax:
 ```
 char* fgets(char* s, int size, FILE* stream);
 ```
-
 returns NULL on failure
 
-**NOTE**: fgets() will stop reading at the first case of the following three:
+- s is an array of characters into which the string is stored
+- size is the size of the array (including '\n'!!! 所以实际上如果字符串长度为n，这里要填上n+1)
+- stream is	the	stream from which to read
+- returns s or NULL on failure
+
+**NOTE**: fgets() will stop reading at the **first** case of the following three:
 1. end of the input (such as a file)
 2. end of a line (ASCII 0x0A or 0x0D)
 3. end of array s(leaving room for a NUL)
    
-**fgets()** is the best way to process line-oriented inputs
+**fgets()** is the best way to process line-oriented inputs 同时\n换行符会被fgets()读入，除非size不够
 
 **NOTE**：可以用fgets()和string IO来处理可读的文件。只需要先用fgets()把各行读入string，然后再用string IO来处理string。相比之下fscanf()很容易出错！(FIXME)
 
@@ -309,6 +313,13 @@ syntax:
 int fputs(const char* s, FILE *stream);
 ```
 returns non-negative number or EOF on failure
+
+**NOTE**: the non-negative number:
+example:
+```
+printf("the non-negative number: %d\n", fputs(s, stdout));
+```
+会先输出fputs()中s的内容，再输出the non-gegative number: 0。这个number貌似是0
 
 #### puts()
 
@@ -499,7 +510,7 @@ size_t fread (void* ptr, size_t size, size_t n_elt, FILE* stream);
 ```
 
 * ptr is address to which data are stored
-* size is the size of one "thing"
+* size is the size of one "thing" (thing is a data type)
 * n_elt is the number of "things"
 * returns number of "things" read or 0 on failure
 
@@ -512,6 +523,11 @@ size_t fwrite (const void* ptr, size_t size, size_t nelt, FILE* stream);
 
 * ptr is address from which data are written
 * others are the same as fread()
+
+example:
+```
+fwrite(data, sizeof(int), 4, myfile3);
+```
 
 
 ### string 的格式化IO
@@ -538,3 +554,4 @@ int snprintf(char* s, size_t size, const char* format, ...);
 
 * s is the array to which to write
 * size is the length of array
+* returns number of characters printed or negative number on failure
