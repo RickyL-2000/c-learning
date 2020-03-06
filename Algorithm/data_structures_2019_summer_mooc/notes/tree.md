@@ -417,3 +417,11 @@ int Isomorphic(Tree R1. Tree R2) {
         }
 }
 ```
+
+
+## example: 利用先序遍历和中序遍历创建二叉树
+
+https://blog.csdn.net/ismahui/article/details/76180343
+
+典型案例：cpp_learning/Algorithm/PTA/advanced/1086_treeTraversalsAgain.cpp
+

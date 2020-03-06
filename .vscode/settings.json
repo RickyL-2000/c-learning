@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.asm": "plaintext",
+        "*.cpp": "cpp",
+        "*.m": "matlab",
+        "stdint.h": "c"
+    }
+}

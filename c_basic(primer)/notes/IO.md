@@ -301,6 +301,7 @@ returns NULL on failure
 2. end of a line (ASCII 0x0A or 0x0D)
 3. end of array s(leaving room for a NUL)
    
+
 **fgets()** is the best way to process line-oriented inputs 同时\n换行符会被fgets()读入，除非size不够
 
 **NOTE**：可以用fgets()和string IO来处理可读的文件。只需要先用fgets()把各行读入string，然后再用string IO来处理string。相比之下fscanf()很容易出错！(FIXME)
@@ -377,6 +378,7 @@ printf()的格式化字符
 |    unsigned short     |  %hu  |
 |         char          |  %c   |
 |   float/double(10)    |  %f   |
+|     double (!!!)      |  %lf  |
 | float/double(sci(10)) | %e/%E |
 |       %f or %e        |  %g   |
 |       %f or %E        |  %G   |
